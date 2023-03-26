@@ -69,6 +69,18 @@ void loop() {
   
 
   // ----- PRINT ----- //
+  // Temp and Humidity
+  if (!dht.readTempAndHumidity(temp_hum_val)) {
+        Serial.print("Humidity:      ");
+        Serial.print(temp_hum_val[0]);
+        Serial.print(" %\n");
+        Serial.print("Temperature:   ");
+        Serial.print(temp_hum_val[1]);
+        Serial.println(" *C");
+    } else {
+        Serial.println("Failed to get temprature and humidity value.");
+    }
+  
   // Light
   Serial.print("Brightness:    ");
   Serial.print(light_val);
@@ -85,18 +97,6 @@ void loop() {
   
   // Ultraviolet
   Serial.print("UV level:      "); Serial.println(uv.readUV());
-  
-  // Temp and Humidity
-  if (!dht.readTempAndHumidity(temp_hum_val)) {
-        Serial.print("Humidity:      ");
-        Serial.print(temp_hum_val[0]);
-        Serial.print(" %\n");
-        Serial.print("Temperature:   ");
-        Serial.print(temp_hum_val[1]);
-        Serial.println(" *C");
-    } else {
-        Serial.println("Failed to get temprature and humidity value.");
-    }
   
   // Air Quality
   if (mySensor.dataAvailable()){
